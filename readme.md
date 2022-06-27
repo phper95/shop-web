@@ -1,6 +1,11 @@
 [TOC]
 
-# yshop-pc
+# shop-web
+
+## 前端使用技术
+  * Vue 全家桶
+  * Element
+
 
 ## 安装依赖
 
@@ -18,7 +23,7 @@ npm run dev
 
 - 测试环境如果需要修改服务相关配置，打开config\index.js
   - 修改：`host`、`port`属性
-  
+
   - 修改请求地址`proxyTable`下`target`
 
 
@@ -26,8 +31,7 @@ npm run dev
 ## 更改请求地址
 
 
-1. 封装文件：`src\api\index.js` 	修改`requestConfig.url`
-
+1. 入口文件：`src\api\index.js` 	修改`requestConfig.url`
 
 
 ## 画布请求配置
@@ -50,4 +54,4 @@ npm run build
 ```
 
 打包后的内容存放在`dist`文件夹内
-
+然后上传./dist/下编译后的文件到web服务器即可
