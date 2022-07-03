@@ -17,7 +17,7 @@
             <label class="mar-top-20">{{img2.des}}</label>
         </div>
     </div>
-    <div class="foot-box"><span style="font-family:arial;">&copy; </span>2016-2020YSHOP-GO版权所有，官网https://www.yixiang.co 并保留所有权利 </div>
+    <div class="foot-box"><span style="font-family:arial;">&copy; </span>2022-2022 SHOP </div>
   </div>
 </template>
 <script>

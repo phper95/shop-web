@@ -72,7 +72,7 @@
               </div>
               <div class="clause mar-top-30 fs16 flex">
                   <div class="select cur-poi" :class="read?'active':''" @click="select"></div>
-                  <span class="mar-left-5">创建账号代表您已接受YSHOP</span>
+                  <span class="mar-left-5">创建账号代表您已接受SHOP</span>
                   <span class="mar-left-5 underline cur-poi">隐私条款</span>
               </div>
               <div class="btn mar-top-40">
@@ -283,7 +283,7 @@ export default {
                 password: this.pwd
             }).then(res => {
                 if (res.status === 200) {
-                    Cookie.set('Yshop_token', res.data.token)
+                    Cookie.set('shop', res.data.token)
                     this.$message.success('登录成功')
                     this.getUserInfo()
                     this.getCartNum()
@@ -312,7 +312,7 @@ export default {
         // 注册
         register () {
             if (!this.read) {
-                return this.$message.warning('请先阅读YSHOP隐私条款')
+                return this.$message.warning('请先阅读SHOP隐私条款')
             } else if (this.pwd1.length < 4 || this.pwd1.length > 16) {
                 return this.$message.warning('请输入4到16位的密码')
             } else if (this.pwd1 !== this.pwdAgain) {

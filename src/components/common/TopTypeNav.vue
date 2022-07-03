@@ -8,7 +8,7 @@
       <div class="TPNleft">
           <div>
             <router-link to="/">
-              <el-image src="static/images/logo.png" style="width:58px;height:23px;"></el-image>
+              <el-image src="static/images/logo.png" style="width:58px;height:35px;"></el-image>
             </router-link>
           </div>
       </div>
@@ -89,7 +89,7 @@ export default {
         if (!val || val === this.$route.path) return
         if (val == '/indexpage/seckill' || val == '/indexpage/combination') {
           this.$message.warning('即将发布！！')
-          return 
+          return
         }
         this.$router.push(val)
       },

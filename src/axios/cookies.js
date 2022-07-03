@@ -5,7 +5,7 @@ import Cookies from 'js-cookie'
  * Cookies.set('key', 'value', { expires: 7, path: ''}) //设置对当前页面的路径
  */
 
-const token = 'Yshop_token'
+const token = 'shop'
 
 export function getToken () {
     return Cookies.get(token)
