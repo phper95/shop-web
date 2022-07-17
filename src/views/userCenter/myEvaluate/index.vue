@@ -84,16 +84,16 @@ export default {
          * 涉及字段
          * 订单唯一id res.data[0].unique       String
          * 订单状态 res.data[0].status 订单状态（-1 : 申请退款 -2 : 退货成功 0：待发货；1：待收货；2：已收货；3：待评价；-1：已退款）  Number
-         * 订单日期 res.data[0].createTime    String
+         * 订单日期 res.data[0].create_time    String
          * 订单id res.data[0].id              Number
-         * 订单号 res.data[0].orderId         String
+         * 订单号 res.data[0].order_id         String
          * 支付状态 res.data[0].paid          Number
-         * 支付时间 res.data[0].payTime       String
-         * 实付金额 res.data[0].payPrice      Number
-         * 是否拼团 res.data[0].pinkId        Nubmer 拼团id 0没有拼团
-         * 商品信息：res.data[0].cartInfo
-         * 商品数量 res.data[0].cartInfo.cartNum        Number
-         * 拼团id res.data[0].cartInfo.combinationId    Number
+         * 支付时间 res.data[0].pay_time       String
+         * 实付金额 res.data[0].pay_price      Number
+         * 是否拼团 res.data[0].pink_id        Nubmer 拼团id 0没有拼团
+         * 商品信息：res.data[0].cart_info
+         * 商品数量 res.data[0].cart_info.cartNum        Number
+         * 拼团id res.data[0].cart_info.combination_id    Number
          */
         // 未支付：10 拼团：11 拼团失败: 12
         // -1 : 申请退款
@@ -108,7 +108,7 @@ export default {
             // 未支付
             item.status = 10
             }
-            if (item.paid === 1 && item.pinkId !== 0) {
+            if (item.paid === 1 && item.pink_id !== 0) {
             // 拼团订单
             item.status = 11
             }
@@ -116,24 +116,24 @@ export default {
             'status': item.status,
             'unique': item.unique,
             'id': item.id,
-            'createTime': item.createTime,
-            'orderId': item.orderId,
+            'create_time': item.create_time,
+            'order_id': item.order_id,
             'paid': item.paid,
-            'payTime': item.payTime,
-            'payPrice': item.payPrice,
-            'pinkId': item.pinkId,
-            'combinationId': item.combinationId,
-            'cartInfo': item.cartInfo.map(i => {
+            'pay_time': item.pay_time,
+            'pay_price': item.pay_price,
+            'pink_id': item.pink_id,
+            'combination_id': item.combination_id,
+            'cart_info': item.cart_info.map(i => {
                 return {
                 'id': i.id,
                 'productInfoId': i.productInfo.id,
                 'attrid': i.productInfo.attrInfo.id,
-                'combinationId': i.combinationId,
+                'combination_id': i.combination_id,
                 'productId': i.productId,
                 'attrProductId': i.productInfo.attrInfo.productId,
                 'cartNum': i.cartNum,
                 'truePrice': i.truePrice,
-                'storeName': i.productInfo.storeName,
+                'store_name': i.productInfo.store_name,
                 'img': i.productInfo.attrInfo.image,
                 'sku': i.productInfo.attrInfo.sku
                 }

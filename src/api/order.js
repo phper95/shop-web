@@ -51,13 +51,13 @@ export function computedOrder (key, data) {
     // key与data非必须参数
     // {
     //     "addressId": "", 地址ID
-    //     "bargainId": "", 砍价ID
-    //     "combinationId": "", 拼团ID
-    //     "couponId": "", 优惠券ID
-    //     "payType": "", 支付方式
-    //     "pinkId": "", 拼团ID
+    //     "bargain_id": "", 砍价ID
+    //     "combination_id": "", 拼团ID
+    //     "coupon_id": "", 优惠券ID
+    //     "pay_type": "", 支付方式
+    //     "pink_id": "", 拼团ID
     //     "shipping_type": "", 配送方式 1=快递 ，2=门店自提
-    //     "useIntegral": "" 使用积分 1-表示使用
+    //     "use_integral": "" 使用积分 1-表示使用
     // }
     return request({
         url: `/order/computed/${key}`,
@@ -69,7 +69,7 @@ export function computedOrder (key, data) {
 // 订单确认 结算详情
 export function confirmOrder (data) {
     // {
-    //     "cartId": "" 购物车id
+    //     "cart_id": "" 购物车id
     // }
     return request({
         url: '/order/confirm',
@@ -83,20 +83,20 @@ export function createOrder (key, data) {
     // key必须 data非必须
     // {
     //     "addressId": "", 地址ID
-    //     "bargainId": "", 砍价ID
-    //     "combinationId": "", 拼团ID
-    //     "couponId": "", 优惠券ID
+    //     "bargain_id": "", 砍价ID
+    //     "combination_id": "", 拼团ID
+    //     "coupon_id": "", 优惠券ID
     //     "from": "", 来源
     //     "isChannel": "", 支付渠道(0微信公众号1微信小程序)
     //     "mark": "", 备注
-    //     "payType": "", 支付方式
+    //     "pay_type": "", 支付方式
     //     "phone": "", 门店电话
-    //     "pinkId": "", 拼团id 0没有拼团
-    //     "realName": "", 门店联系人
-    //     "seckillId": "", 秒杀产品ID
-    //     "shippingType": "", 配送方式 1=快递 ，2=门店自提
-    //     "storeId": "", 门店ID
-    //     "useIntegral": "" 使用积分 1-表示使用
+    //     "pink_id": "", 拼团id 0没有拼团
+    //     "real_name": "", 门店联系人
+    //     "seckill_id": "", 秒杀产品ID
+    //     "shipping_type": "", 配送方式 1=快递 ，2=门店自提
+    //     "store_id": "", 门店ID
+    //     "use_integral": "" 使用积分 1-表示使用
     // }
     return request({
         url: `/order/create/${key}`,
@@ -152,7 +152,7 @@ export function getSubscribeTemplate () {
 export function verificOrder (data) {
     // {
     //     "isConfirm": 0, 订单核销状态：1确认0正常
-    //     "verifyCode": "" 核销码
+    //     "verify_code": "" 核销码
     // }
     return request({
         url: '/order/order_verific',
@@ -165,7 +165,7 @@ export function verificOrder (data) {
 export function payOrder (data) {
     // {
     //     "isConfirm": 0, 订单核销状态：1确认0正常
-    //     "verifyCode": "" 核销码
+    //     "verify_code": "" 核销码
     // }
     return request({
         url: '/order/pay',

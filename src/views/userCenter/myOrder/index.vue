@@ -47,7 +47,7 @@
       width="600px"
       center>
           <div class="diaContent">
-              <div class="diaTitle">确认删除{{ this.orderId }}订单吗？</div>
+              <div class="diaTitle">确认删除{{ this.order_id }}订单吗？</div>
           </div>
           <div class="diaBtn">
               <button @click="delDialogVisible = false">取 消</button>
@@ -65,7 +65,7 @@
           </div>
           <div class="diaBtn">
               <button @click="cancelDialogVisible = false">取 消</button>
-              <el-button :loading="loadingBtn" class="yes" @click="canOrder(orderId)">确 定</el-button>
+              <el-button :loading="loadingBtn" class="yes" @click="canOrder(order_id)">确 定</el-button>
           </div>
       </el-dialog>
       <!-- 我的订单-邀请好友 -->
@@ -101,7 +101,7 @@
             </div>
             <div class="diaBtn">
                 <button @click="receDialogVisible = false">取 消</button>
-                <el-button :loading="loadingBtn" class="yes" @click="takOrder(orderId)">确 定</el-button>
+                <el-button :loading="loadingBtn" class="yes" @click="takOrder(order_id)">确 定</el-button>
             </div>
         </el-dialog>
   </div>
@@ -165,7 +165,7 @@ export default {
       inviteDialogVisible: false,
       receDialogVisible: false,
       oid: null, // 需要操作的订单id
-      orderId: null, // 需要操作的订单号
+      order_id: null, // 需要操作的订单号
       qrcode: '',
       loadingBtn: false
     }
@@ -200,8 +200,8 @@ export default {
     },
     // 查询按钮部分——根据订单号或商品查询
     searchBtn () {
-      var orderid = `${this.$refs.searchOrder.value}`
-      if (orderid.length === 0) {
+      var order_id = `${this.$refs.searchOrder.value}`
+      if (order_id.length === 0) {
         this.$message.warning('请输入要搜索的商品或订单号')
         return
       }
@@ -225,16 +225,16 @@ export default {
        * 涉及字段
        * 订单唯一id res.data[0].unique       String
        * 订单状态 res.data[0].status 订单状态（-1 : 申请退款 -2 : 退货成功 0：待发货；1：待收货；2：已收货；3：待评价；-1：已退款）  Number
-       * 订单日期 res.data[0].createTime    String
+       * 订单日期 res.data[0].create_time    String
        * 订单id res.data[0].id              Number
-       * 订单号 res.data[0].orderId         String
+       * 订单号 res.data[0].order_id         String
        * 支付状态 res.data[0].paid          Number
-       * 支付时间 res.data[0].payTime       String
-       * 实付金额 res.data[0].payPrice      Number
-       * 是否拼团 res.data[0].pinkId        Nubmer 拼团id 0没有拼团
-       * 商品信息：res.data[0].cartInfo
-       * 商品数量 res.data[0].cartInfo.cartNum        Number
-       * 拼团id res.data[0].cartInfo.combinationId    Number
+       * 支付时间 res.data[0].pay_time       String
+       * 实付金额 res.data[0].pay_price      Number
+       * 是否拼团 res.data[0].pink_id        Nubmer 拼团id 0没有拼团
+       * 商品信息：res.data[0].cart_info
+       * 商品数量 res.data[0].cart_info.cartNum        Number
+       * 拼团id res.data[0].cart_info.combination_id    Number
        */
       // 未支付：10 拼团：11 拼团失败: 12
       // -1 : 申请退款
@@ -251,11 +251,11 @@ export default {
           // 未支付
           item.status = 10
         }
-        if (item.paid === 1 && item.pinkId !== 0) {
+        if (item.paid === 1 && item.pink_id !== 0) {
           // 拼团订单
           item.status = 11
         }
-        item.cartInfo.forEach(i => {
+        item.cart_info.forEach(i => {
           if (i.isReply !== 0) {
             item.status = 4
           }
@@ -264,25 +264,25 @@ export default {
           'status': item.status,
           'unique': item.unique,
           'id': item.id,
-          'createTime': item.createTime,
-          'orderId': item.orderId,
+          'create_time': item.create_time,
+          'order_id': item.order_id,
           'paid': item.paid,
-          'payTime': item.payTime,
-          'payPrice': item.payPrice,
-          'pinkId': item.pinkId,
-          'combinationId': item.combinationId,
-          'cartInfo': item.cartInfo.map(i => {
+          'pay_time': item.pay_time,
+          'pay_price': item.pay_price,
+          'pink_id': item.pink_id,
+          'combination_id': item.combination_id,
+          'cart_info': item.cart_info.map(i => {
             return {
               'id': i.id,
               'productInfoId': i.productInfo.id,
               'attrid': i.productInfo.attrInfo.id,
               'isReply': i.isReply,
-              'combinationId': i.combinationId,
+              'combination_id': i.combination_id,
               'productId': i.productId,
               'attrProductId': i.productInfo.attrInfo.productId,
               'cartNum': i.cartNum,
               'truePrice': i.truePrice,
-              'storeName': i.productInfo.storeName,
+              'store_name': i.productInfo.store_name,
               'img': i.productInfo.attrInfo.image,
               'sku': i.productInfo.attrInfo.sku
             }
@@ -297,7 +297,7 @@ export default {
         // 未支付
         res.data.status = 10
       }
-      if (res.data.paid === 1 && res.data.pinkId !== 0) {
+      if (res.data.paid === 1 && res.data.pink_id !== 0) {
         // 拼团订单
         res.data.status = 11
       }
@@ -305,24 +305,24 @@ export default {
           'status': res.data.status,
           'unique': res.data.unique,
           'id': res.data.id,
-          'createTime': res.data.createTime,
-          'orderId': res.data.orderId,
+          'create_time': res.data.create_time,
+          'order_id': res.data.order_id,
           'paid': res.data.paid,
-          'payTime': res.data.payTime,
-          'payPrice': res.data.payPrice,
-          'pinkId': res.data.pinkId,
-          'combinationId': res.data.combinationId,
-          'cartInfo': res.data.cartInfo.map(i => {
+          'pay_time': res.data.pay_time,
+          'pay_price': res.data.pay_price,
+          'pink_id': res.data.pink_id,
+          'combination_id': res.data.combination_id,
+          'cart_info': res.data.cart_info.map(i => {
             return {
-              'cartid': i.id,
+              'cart_id': i.id,
               'productInfoId': i.productInfo.id,
               'attrid': i.productInfo.attrInfo.id,
-              'combinationId': i.combinationId,
+              'combination_id': i.combination_id,
               'productId': i.productId,
               'attrProductId': i.productInfo.attrInfo.productId,
               'cartNum': i.cartNum,
               'truePrice': i.truePrice,
-              'storeName': i.productInfo.storeName,
+              'store_name': i.productInfo.store_name,
               'img': i.productInfo.attrInfo.image,
               'sku': i.productInfo.attrInfo.sku
             }
@@ -364,9 +364,9 @@ export default {
     },
     // 签收相关
     isTake (val) { this.receDialogVisible = this.isShow(val) },
-    takOrder (orderId) {
+    takOrder (order_id) {
       this.loadingBtn = true
-      takeOrder({'uni': orderId}).then(res => {
+      takeOrder({'uni': order_id}).then(res => {
         if (res.status === 200 && res.success) {
           this.$message.success('收货成功')
           this.receDialogVisible = false
@@ -379,7 +379,7 @@ export default {
     },
     isShow (val) {
       this.oid = val.id
-      this.orderId = val.orderid
+      this.order_id = val.order_id
       return val.show
     },
     // 邀请相关

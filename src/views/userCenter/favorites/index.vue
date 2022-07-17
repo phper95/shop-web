@@ -7,7 +7,7 @@
                 <div class="favoritesBox mar-bot-30" v-for="(item) in favoritesList" :key="item.productId">
                     <img class="cur-poi" :src="item.product.image" alt="" @click="toDetail(item.productId)">
                     <div class="pad-15">
-                        <p class="col-666 overflow">{{item.product.storeName}}</p>
+                        <p class="col-666 overflow">{{item.product.store_name}}</p>
                         <div class="mar-top-10">
                             <span class="col-333 bold">¥{{item.product.price}}</span>
                             <span class="fr col-666 cur-poi" @click="del(item.productId)">删除</span>

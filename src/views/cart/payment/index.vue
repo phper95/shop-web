@@ -4,7 +4,7 @@
         <div class="paymentBox" v-if="payStatus===false">
             <div class="top fs24 mar-bot-20">请选择支付方式</div>
             <div class="amount display-between col-666">
-                <p class="fs20">交易号：{{orderId}}</p>
+                <p class="fs20">交易号：{{order_id}}</p>
                 <p class="fs16">总额： <span class="fs20 col-F26">¥{{money}}</span></p>
             </div>
             <div class="payMethod flex">
@@ -43,7 +43,7 @@
             <div>
                 <el-button
                 class="col-fff bgc-333"
-                @click="$router.push({'path': '/orderDetail', 'query': {'id': orderId}})"
+                @click="$router.push({'path': '/orderDetail', 'query': {'id': order_id}})"
                 >查看订单</el-button>
                 <el-button class="col-333 mar-left-70" @click="$router.push('/')">继续购物</el-button>
             </div>
@@ -57,7 +57,7 @@
           :before-close="handleClose">
           <div class="display-column display-center">
               <div class="qr mar-bot-20">
-                   <VueQrcode :value="orderKey"/> 
+                   <VueQrcode :value="orderKey"/>
               </div>
               <p class="mar-bot-30 fs20">应付金额：¥{{ money }}</p>
               <div class="sys flex">
@@ -83,7 +83,7 @@ export default {
     components: {VueQrcode},
     data () {
         return {
-            orderId: '',
+            order_id: '',
             money: 539,
             time: '0分0秒',
             active: '',
@@ -97,10 +97,10 @@ export default {
     created () {
         console.log(this.$route.query)
         this.money = this.$route.query.price
-        this.orderId = this.$route.query.orderId
+        this.order_id = this.$route.query.order_id
         //this.orderKey = this.$route.query.jsConfig.codeUrl || '暂无有效订单'
         // this.orderKey = this.$route.query.key
-        this.resetTimes(this.$route.query.createTime)
+        this.resetTimes(this.$route.query.create_time)
     },
     methods: {
         // 选择支付方式
@@ -117,7 +117,7 @@ export default {
 
                 // 查询付款结果，
                 // this.timer = setInterval(() => {
-                //     detailOrder(this.orderId).then(res => {
+                //     detailOrder(this.order_id).then(res => {
                 //         if (res.data.paid === 1) {
                 //             this.payVisible = false // 隐藏支付卡
                 //             this.payStatus = true // 显示付款成功
@@ -127,15 +127,15 @@ export default {
                 // }, 5000)
 
                 payOrder({
-                    uni: this.orderId,
+                    uni: this.order_id,
                     from: 'pc',
-                    payType: 'weixin', // 'weixin'/'yue'     
+                    pay_type: 'weixin', // 'weixin'/'yue'
             }).then(res => {
-                
+
                 if (res.status === 200) {
                     this.orderKey = res.data.result.jsConfig.codeUrl
-                    //  detailOrder(this.orderId).then(res => {
-                         
+                    //  detailOrder(this.order_id).then(res => {
+
                     //     if (res.data.paid === 1) {
                     //        // this.payVisible = false // 隐藏支付卡
                     //         this.payStatus = true // 显示付款成功
@@ -146,19 +146,19 @@ export default {
                     console.log(res)
                     this.$message.warning(res.msg || '支付失败失败！')
                 }
-            
+
             })
             }
 
             //余额支付
             if (this.active == 2) {
                 payOrder({
-                    uni: this.orderId,
+                    uni: this.order_id,
                     from: 'pc',
-                    payType: 'yue', // 'weixin'/'yue'     
+                    pay_type: 'yue', // 'weixin'/'yue'
             }).then(res => {
                 if (res.status === 200) {
-                     detailOrder(this.orderId).then(res => {
+                     detailOrder(this.order_id).then(res => {
                         if (res.data.paid === 1) {
                            // this.payVisible = false // 隐藏支付卡
                             this.payStatus = true // 显示付款成功
@@ -169,21 +169,21 @@ export default {
                     console.log(res)
                     this.$message.warning(res.msg || '支付失败失败！')
                 }
-            
+
             })
 
 
             }
-            
+
         },
 
         // 关闭支付二维码
         handleClose () { this.payVisible = false },
         // 倒计时
-        resetTimes (createTime) {
-            if (!createTime) { return }
+        resetTimes (create_time) {
+            if (!create_time) { return }
             // 订单过期时间 = 创建时间 + 15分钟（毫秒）
-            var afterBuy = new Date(createTime).getTime() + 900000
+            var afterBuy = new Date(create_time).getTime() + 900000
             // console.log(afterBuy)
             this.timer2 = setInterval(() => {
                 this.time = this.countDownTime(afterBuy)

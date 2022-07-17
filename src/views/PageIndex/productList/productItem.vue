@@ -1,7 +1,7 @@
 <template>
   <div class="productItem">
       <el-image class="imgTit" :src="obj.image" alt="商品图片" @click="toDetail(obj.id,0)"></el-image>
-      <div class="name">{{ obj.storeName }}</div>
+      <div class="name">{{ obj.store_name }}</div>
       <div class="buyIt">
           <div class="price">￥{{ obj.price }}</div>
           <div class="cart" @click="toDetail(obj.id,0)">
@@ -30,12 +30,12 @@ export default {
         },
         toCart (id) {
             cartAdd({
-                'bargainId': 0,
+                'bargain_id': 0,
                 'cartNum': 1,
-                'combinationId': 0,
+                'combination_id': 0,
                 'new': 0,
                 'productId': id,
-                'secKillId': 0,
+                'seckill_id': 0,
                 'uniqueId': ''
             }).then(res => {
                 if (res.status === 200) {

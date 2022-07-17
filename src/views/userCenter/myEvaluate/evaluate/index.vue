@@ -116,17 +116,17 @@ export default {
             if (!id) { return }
             var res = await detailOrder(id)
             if (res.status === 200) {
-                this.dataList = res.data.cartInfo.map(item => {
+                this.dataList = res.data.cart_info.map(item => {
                     if (item.isReply === 0) {
                         return {
                             'id': item.id,
                             'productId': item.productId,
-                            'combinationId': item.combinationId,
-                            'seckillId': item.seckillId,
+                            'combination_id': item.combination_id,
+                            'seckill_id': item.seckill_id,
                             'unique': item.unique,
                             'isReply': item.isReply,
                             'image': item.productInfo.attrInfo.image,
-                            'title': item.productInfo.storeName,
+                            'title': item.productInfo.store_name,
                             'sku': item.productInfo.attrInfo.sku,
                             'comment': '',
                             'goods': 5,

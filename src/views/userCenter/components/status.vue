@@ -23,7 +23,7 @@
 
 <script>
 export default {
-    name: 'OrderStatus',
+    name: 'orderStatus',
     props: {
         status: Number
     },

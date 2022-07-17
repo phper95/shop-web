@@ -24,7 +24,7 @@
                             <div class="addressInfo">
                                 <div class="mar-bot-10">
                                     <span class="title col-999">收货人：</span>
-                                    <span>{{defaultAddress.realName}} {{defaultAddress.phone}}</span>
+                                    <span>{{defaultAddress.real_name}} {{defaultAddress.phone}}</span>
                                 </div>
                                 <div>
                                     <span class="title col-999">地址：</span>
@@ -72,10 +72,10 @@
                         <span class="fs16">共 {{ amount }} 件</span>
                     </div>
                     <div class="productList">
-                        <div class="product flex fs16" v-for="(item) in settlementData.cartInfo" :key="item.id">
+                        <div class="product flex fs16" v-for="(item) in settlementData.cart_info" :key="item.id">
                             <el-image class="mar-right-20" :src="item.productInfo.attrInfo.image" ></el-image>
                             <div class="productInfo display-column mar-right-20 flex2">
-                                <p class="productName mar-bot-20">{{item.productInfo.storeName}}</p>
+                                <p class="productName mar-bot-20">{{item.productInfo.store_name}}</p>
                                     <div class="size">
                                         <p>{{item.productInfo.attrInfo.sku}}</p>
                                     </div>
@@ -104,7 +104,7 @@
                         @click="selectCoupon(item)">
                             <div class="flex2 tac">
                                 <span class="fs20">¥</span>
-                                <span class="fs50 bold">{{item.couponPrice}}</span>
+                                <span class="fs50 bold">{{item.coupon_price}}</span>
                             </div>
                             <div class="flex2 display-column endTime">
                                 <p class="fs18">满{{item.useMinPrice}}才可使用</p>
@@ -122,17 +122,17 @@
                 <div class="sett">
                     <div class="label fs20">商品合计</div>
                     <div class="total">
-                        <div class="totalPrice display-between">
+                        <div class="total_price display-between">
                             <p>商品总价</p>
-                            <p>¥{{orderPrice.totalPrice}}</p>
+                            <p>¥{{orderPrice.total_price}}</p>
                         </div>
                         <div class="discountAmount display-between">
                             <p>优惠</p>
-                            <p>-¥{{orderPrice.deductionPrice}}</p>
+                            <p>-¥{{orderPrice.deduction_price}}</p>
                         </div>
                         <div class="fare display-between">
                             <p>运费</p>
-                            <p>¥{{orderPrice.payPostage}}</p>
+                            <p>¥{{orderPrice.pay_postage}}</p>
                         </div>
                         <div class="submitOrder flex mar-top-30">
                             <div class="sum flex1">
@@ -164,7 +164,7 @@
           <div class="addressList">
               <div class="addressBox flex" :class="addressIndex===index?'active':''" v-for="(item,index) in addressList" :key="item.id" @click="selectAddress(index)">
                   <div class="flex3 col-333">
-                      <p><span class="col-999" style="width:70px;display: inline-block;">收货人:</span>{{item.realName}} {{item.phone}}</p>
+                      <p><span class="col-999" style="width:70px;display: inline-block;">收货人:</span>{{item.real_name}} {{item.phone}}</p>
                       <p><span class="col-999" style="width:70px;display: inline-block;">地址:</span>{{item.province + item.city + item.district + item.detail}}</p>
                   </div>
                   <div class="flex1 tar col-999">
@@ -225,7 +225,7 @@ export default {
             settlementData: {},
             storeList: [],
             amount: 0,
-            defaultAddress: {'realName': ''},
+            defaultAddress: {'real_name': ''},
             defaultStore: {},
             storeIndex: {
                 index: null
@@ -276,11 +276,11 @@ export default {
         // 获取结算详情
         getSettlement () {
             confirmOrder({
-                cartId: this.$route.query.cartId
+                cart_id: this.$route.query.cart_id
             }).then(res => {
                 if (res.status === 200) {
                     this.settlementData = res.data
-                    this.settlementData.cartInfo.forEach(item => {
+                    this.settlementData.cart_info.forEach(item => {
                         this.amount += parseInt(item.cartNum)
                     })
                     this.defaultAddress = res.data.addressInfo
@@ -299,17 +299,17 @@ export default {
         computedAmount () {
             computedOrder(this.settlementData.orderKey, {
                     addressId: this.defaultAddress.id,
-                    bargainId: 0,
-                    combinationId: 0,
-                    couponId: 0,
-                    payType: 1,
-                    pinkId: 0,
+                    bargain_id: 0,
+                    combination_id: 0,
+                    coupon_id: 0,
+                    pay_type: 1,
+                    pink_id: 0,
                     shipping_type: this.activeMethod,
-                    useIntegral: 0
+                    use_integral: 0
             }).then(res => {
                 if (res.status === 200) {
                     this.orderPrice = res.data.result
-                    this.orderPrice.webPrice = this.orderPrice.payPrice
+                    this.orderPrice.webPrice = this.orderPrice.pay_price
                     this.loading = false
                 } else {
                     this.$message.warning(res.msg)
@@ -318,7 +318,7 @@ export default {
         },
         // 订单可使用优惠券
         async getOrderCoupons () {
-            var res = await couponOrder(this.$route.query.cartId)
+            var res = await couponOrder(this.$route.query.cart_id)
             if (res.status === 200) {
                 this.couponList = res.data
             } else {
@@ -407,7 +407,7 @@ export default {
                     })
                 }
             })
-            this.newAddress.real_name = item.realName
+            this.newAddress.real_name = item.real_name
             this.newAddress.phone = item.phone
             this.newAddress.detail = item.detail
             this.newAddress.id = item.id
@@ -486,8 +486,8 @@ export default {
         selectCoupon (item) {
             if (this.curCoupon.id !== item.id) {
                 this.curCoupon.id = item.id
-                this.curCoupon.money = item.couponPrice
-                this.orderPrice.webPrice = this.orderPrice.payPrice - item.couponPrice
+                this.curCoupon.money = item.coupon_price
+                this.orderPrice.webPrice = this.orderPrice.pay_price - item.coupon_price
             } else {
                 this.curCoupon = {
                     id: null,
@@ -501,24 +501,24 @@ export default {
             this.btnLoading = true
             createOrder(this.settlementData.orderKey, {
                 addressId: this.defaultAddress.id,
-                //bargainId: 0,
-                //combinationId: 0,
-                //couponId: this.curCoupon.id,
+                //bargain_id: 0,
+                //combination_id: 0,
+                //coupon_id: this.curCoupon.id,
                 from: 'pc',
                 //isChannel: '',
                 mark: '',
-                payType: 'weixin', // 'weixin'/'yue'
+                pay_type: 'weixin', // 'weixin'/'yue'
                 phone: '',
-               // pinkId: 0,
-                realName: '',
-               // seckillId: 0,
-                shippingType: this.activeMethod,
-                //storeId: this.defaultStore.id,
-                useIntegral: 0
+               // pink_id: 0,
+                real_name: '',
+               // seckill_id: 0,
+                shipping_type: this.activeMethod,
+                //store_id: this.defaultStore.id,
+                use_integral: 0
             }).then(res => {
                 if (res.status === 200) {
-                    res.data.result.price = this.orderPrice.payPrice
-                    res.data.result.createTime = res.data.createTime
+                    res.data.result.price = this.orderPrice.pay_price
+                    res.data.result.create_time = res.data.create_time
                     this.$router.push({
                         path: '/cart/payment',
                         query: res.data.result
@@ -671,7 +671,7 @@ export default {
                     border: 1px solid #CCCCCC;
                     box-sizing: border-box;
                     padding: 30px;
-                    .totalPrice,.discountAmount,.fare{
+                    .total_price,.discountAmount,.fare{
                         border-bottom: 1px solid #CCCCCC;
                         line-height: 57px;
                     }

@@ -46,7 +46,7 @@
       :obj="productHot.header">
         <div class="common hotItem">
         <div class="left">
-          <div class="title">{{ productHot.section[0].storeName }}</div>
+          <div class="title">{{ productHot.section[0].store_name }}</div>
           <div class="price">
             {{ `￥${productHot.section[0].otPrice}` }}
             <div class="putCart" @click="toCart(productHot.section[0].id)">
@@ -109,7 +109,7 @@ export default {
             'bcText': 'THE NEW START',
             'interface': '/indexpage/productlist'
         },
-        'section': [{'image': '', 'storeName': '', 'otPrice': ''}]
+        'section': [{'image': '', 'store_name': '', 'otPrice': ''}]
       },
       productHot: {
         'header': {
@@ -118,10 +118,10 @@ export default {
           'interface': '/indexpage/productlist'
         },
         'section': [
-          {'image': '', 'storeName': '', 'otPrice': ''}
+          {'image': '', 'store_name': '', 'otPrice': ''}
         ]
       },
-    
+
       banner: [],
       types: [],
       typeSelect: '',
@@ -189,7 +189,7 @@ export default {
           }
         })
     },
-    
+
     // 数据筛选
     seletcVal (obj) {
       // 新品首发
@@ -219,7 +219,7 @@ export default {
         }
       })
     }
-    
+
   }
 }
 </script>

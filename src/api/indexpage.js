@@ -19,11 +19,11 @@ export function getKeyWord () {
 // 获取商品列表
 export function getProducts (params) {
     // {
-    //     'isIntegral': 0, // 是否积分兑换商品 0否  1是
+    //     'is_integral': 0, // 是否积分兑换商品 0否  1是
     //     'keyword': '', // 关键
     //     'news': '', // 是否新品  0否  1是
-    //     'priceOrder': '', // 价格排序  desc正序  asc倒序
-    //     'salesOrder': '', // 销量排序
+    //     'price_order': '', // 价格排序  desc正序  asc倒序
+    //     'sales_order': '', // 销量排序
     //     'sid': '', // 分类ID
     //     'type': '', // 类别 不传
     //     'limit': 10,

@@ -13,10 +13,10 @@
  */
 <template>
   <div class="shouldPay">
-      <div class="priceCom">商品合计：<span>￥{{ obj.totalPrice }}</span></div>
-      <div class="priceCom">邮费：<span>￥{{ obj.totalPostage }}</span></div>
-      <!-- <div class="priceCom">活动优惠：<span>-￥{{ obj.deductionPrice }}</span></div> -->
-      <div class="priceCom">优惠卷：<span>-￥{{ obj.couponPrice }}</span></div>
+      <div class="priceCom">商品合计：<span>￥{{ obj.total_price }}</span></div>
+      <div class="priceCom">邮费：<span>￥{{ obj.total_postage }}</span></div>
+      <!-- <div class="priceCom">活动优惠：<span>-￥{{ obj.deduction_price }}</span></div> -->
+      <div class="priceCom">优惠卷：<span>-￥{{ obj.coupon_price }}</span></div>
       <div class="priceCom count">最终金额：<span>￥{{ shouldPay }}</span></div>
   </div>
 </template>
@@ -29,7 +29,7 @@ export default {
     },
     computed: {
         shouldPay () {
-            return this.obj.totalPrice + this.obj.totalPostage - this.obj.deductionPrice - this.obj.couponPrice
+            return this.obj.total_price + this.obj.total_postage - this.obj.deduction_price - this.obj.coupon_price
         }
     }
 }

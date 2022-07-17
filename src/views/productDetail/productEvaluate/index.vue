@@ -16,7 +16,7 @@
                         <p class="mar-bot-10">{{item.nickname}}</p>
                         <el-rate :colors="color" v-model="item.productScore" disabled></el-rate>
                     </div>
-                    <p class="col-999">{{item.createTime | comverTime('YYYY-MM-DD HH:mm')}}</p>
+                    <p class="col-999">{{item.create_time | comverTime('YYYY-MM-DD HH:mm')}}</p>
                 </div>
                 <div class="content mar-top-20">
                     <p>{{item.comment}}</p>
@@ -103,7 +103,7 @@ export default {
                     if (res.data) {
                         this.evaluateList = [...this.evaluateList, ...res.data]
                     }
-                    
+
                 } else {
                     this.$message.warning(res.msg)
                 }

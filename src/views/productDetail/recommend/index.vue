@@ -8,7 +8,7 @@
             <div class="goodsBox mar-bot-20" v-for="(item) in list" :key="item.id">
                 <el-image class="goodsImg cur-poi" :src="item.image" @click="lookProductDetail(item.id)"></el-image>
                 <div class="goodsInfo">
-                    <p class="goodsName overflow fs22 col-666">{{item.storeName}}</p>
+                    <p class="goodsName overflow fs22 col-666">{{item.store_name}}</p>
                     <div class="mar-top-20 display-between">
                         <p class="goodsPrice fs20">¥{{item.price}}</p>
                         <el-image class="cart cur-poi" src="static/images/gwc.png" @click="addToCart(item.id)"></el-image>
@@ -41,12 +41,12 @@ export default {
         },
         addToCart (id) {
             cartAdd({
-                'bargainId': 0,
+                'bargain_id': 0,
                 'cartNum': 1,
-                'combinationId': 0,
+                'combination_id': 0,
                 'new': 0,
                 'productId': id,
-                'secKillId': 0,
+                'seckill_id': 0,
                 'uniqueId': ''
             }).then(res => {
                 if (res.status === 200) {

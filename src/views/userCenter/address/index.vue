@@ -8,7 +8,7 @@
         <div class="addressList" v-loading="loading" v-if="!noAddress">
             <div class="addressBox flex mar-bot-20" v-for="(item) in addressList" :key="item.id">
                 <div class="flex1">
-                    <p class="receiver">{{item.realName}}</p>
+                    <p class="receiver">{{item.real_name}}</p>
                     <p class="default col-999" v-if="item.isDefault">默认地址</p>
                     <p class="default col-999" v-else><span class="cur-poi" @click="setDefault(item.id)">设为默认地址</span></p>
                 </div>
@@ -159,7 +159,7 @@ export default {
                     })
                 }
             })
-            this.newAddress.real_name = item.realName
+            this.newAddress.real_name = item.real_name
             this.newAddress.phone = item.phone
             this.newAddress.detail = item.detail
             this.newAddress.id = item.id

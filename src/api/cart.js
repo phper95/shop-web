@@ -6,12 +6,12 @@ import request from '@/axios/request.js'
 // 添加到购物车
 export function cartAdd (data) {
     // {
-    //     "bargainId": 0, 产品砍价ID
+    //     "bargain_id": 0, 产品砍价ID
     //     "cartNum": 0, 购物车数量
-    //     "combinationId": 0, 产品拼团ID
+    //     "combination_id": 0, 产品拼团ID
     //     "new": 0, 是否新购买
     //     "productId": 0, 产品ID
-    //     "secKillId": 0, 产品秒杀ID
+    //     "seckill_id": 0, 产品秒杀ID
     //     "uniqueId": "" 唯一的ID
     // }
     return request({

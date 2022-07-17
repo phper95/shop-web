@@ -1,7 +1,7 @@
 export default {
     buttonlist: [
-        // 已完成条件： refundStatus === 2 || 已收货
-        // 取消订单状态： paid===0 (未支付) && payTime > createTime + 15分钟
+        // 已完成条件： refund_status === 2 || 已收货
+        // 取消订单状态： paid===0 (未支付) && pay_time > create_time + 15分钟
         // 未支付：10 拼团：11 拼团失败：12 已完成: 4
         // -1 : 申请退款
         // -2 : 退货成功
@@ -58,7 +58,7 @@ export default {
         //     'type': 'special',
         //     'interface': 'remindShip'
         // },
-   
+
         {
             'des': '确认收货',
             'status': [1],

@@ -79,8 +79,8 @@ export default {
     watch: {
         obj: {
             handler (nVal, oVal) {
-                this.expressCompany = nVal.deliveryName
-                this.expressCode = nVal.deliveryId
+                this.expressCompany = nVal.delivery_name
+                this.expressCode = nVal.delivery_id
                 this.getExpress(nVal)
             },
             deep: true
@@ -89,10 +89,10 @@ export default {
     methods: {
         getExpress (obj) {
             let expressInfoDo = {
-                'logisticCode': obj.deliveryId,
+                'logisticCode': obj.delivery_id,
                 // 'logisticCode': 'YT5399329246792', // 1382232177634181120 YTO
                 'orderCode': obj.orderCode,
-                'shipperCode': obj.deliverySn
+                'shipperCode': obj.delivery_sn
             }
             // expressOder(expressInfoDo).then(res => {
             //     if (res.status === 200) {

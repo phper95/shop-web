@@ -24,7 +24,7 @@
                     <el-image class="img" :src="i.img"></el-image>
                 </div>
                 <div class="info">
-                    <div>{{ i.storeName }}</div>
+                    <div>{{ i.store_name }}</div>
                     <!-- <div class="wrap">
                         <div><span>颜色：</span>{{ i.color }}</div>
                         <div><span>尺码：</span>{{ i.size }}</div>

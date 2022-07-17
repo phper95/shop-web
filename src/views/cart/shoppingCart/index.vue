@@ -26,7 +26,7 @@
                                 <div class="productInfo flex flex3">
                                     <el-image class="cur-poi" :src="item.productInfo.attrInfo.image" @click="toDetail(item.productId)"></el-image>
                                     <div class="mar-left-20 fs16">
-                                        <p class="productName mar-bot-20">{{item.productInfo.storeName}}</p>
+                                        <p class="productName mar-bot-20">{{item.productInfo.store_name}}</p>
                                         <div class="size">
                                             <p class="col-999">{{item.productInfo.attrInfo.sku}}</p>
                                         </div>
@@ -54,7 +54,7 @@
                                 <div class="productInfo flex flex3">
                                     <el-image class="cur-poi" :src="item.productInfo.image" @click="toDetail(item.productId)"></el-image>
                                     <div class="mar-left-20 fs16">
-                                        <p class="productName mar-bot-20">{{item.productInfo.storeName}}</p>
+                                        <p class="productName mar-bot-20">{{item.productInfo.store_name}}</p>
                                         <div class="size">
                                             <!-- <p class="col-999">{{item.productInfo.sku}}</p> -->
                                         </div>
@@ -90,9 +90,9 @@
             <div class="right">
                 <div class="label fs20">商品合计</div>
                 <div class="pad-30 fs18">
-                    <div class="totalPrice display-between">
+                    <div class="total_price display-between">
                         <p>商品总价</p>
-                        <p>¥{{totalPrice}}</p>
+                        <p>¥{{total_price}}</p>
                     </div>
                     <div class="fare display-between">
                         <p>运费</p>
@@ -101,7 +101,7 @@
                     <div class="settlement flex mar-top-30">
                         <div class="total flex1">
                             <p class="fs16">总计</p>
-                            <p class="fs26">¥{{totalPrice + postage}}</p>
+                            <p class="fs26">¥{{total_price + postage}}</p>
                         </div>
                         <div class="btn flex1">
                             <el-button :loading="flag" @click="sett">立刻结算</el-button>
@@ -130,11 +130,11 @@ export default {
             flag: false,
             cartList: [],
             invalidGoods: [],
-            totalPrice: 0,
+            total_price: 0,
             postage: 0,
             loading: false,
             noGoods: false,
-            cartId: null,
+            cart_id: null,
             xz: 'static/images/xz@2x.png',
             wz: 'static/images/wz@2x.png',
             xz1: 'static/images/xz1@2x.png',
@@ -170,7 +170,7 @@ export default {
             if (res.status === 200) {
                 this.cartList = res.data.valid
                 this.invalidGoods = res.data.invalid
-                this.totalPrice = 0
+                this.total_price = 0
                 this.postage = 0
                 this.noGoods = (this.invalidGoods.length === 0 && this.cartList.length === 0)
                 this.cartList.forEach(i => {
@@ -213,11 +213,11 @@ export default {
 
         // 计算价格
         computePrice () {
-            this.totalPrice = 0
+            this.total_price = 0
             this.postage = 0
             this.cartList.forEach(i => {
                 if (i.selected) {
-                    this.totalPrice += i.cartNum * Number(i.productInfo.attrInfo.price)
+                    this.total_price += i.cartNum * Number(i.productInfo.attrInfo.price)
                     this.postage += Number(i.productInfo.postage)
                 }
             })
@@ -286,7 +286,7 @@ export default {
             this.$router.push({
                 path: '/cart/settlement',
                 query: {
-                    cartId: ids
+                    cart_id: ids
                 }
             })
         }
@@ -390,7 +390,7 @@ export default {
                 line-height: 57px;
                 padding-left: 20px;
             }
-            .totalPrice,.fare{
+            .total_price,.fare{
                 border-bottom: 1px solid #CCCCCC;
                 line-height: 57px;
             }

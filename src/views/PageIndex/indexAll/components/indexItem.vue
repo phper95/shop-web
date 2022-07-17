@@ -1,7 +1,7 @@
 <template>
   <div class="productItem">
       <el-image class="imgPro" :src="obj.image || ''" alt="商品图片" @click="toDetail(obj.id,type)"></el-image>
-      <div class="title">{{ obj.storeName }}</div>
+      <div class="title">{{ obj.store_name }}</div>
       <div class="price">
         {{ `￥${obj.otPrice}` }}
         <div class="putCart" @click="toDetail(obj.id, type)">

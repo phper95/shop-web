@@ -103,11 +103,11 @@ export default {
     data () {
         return {
             listquery: {
-                'isIntegral': 0, // 是否积分兑换商品 0否  1是
+                'is_integral': 0, // 是否积分兑换商品 0否  1是
                 'keyword': '', // 关键
                 'news': '', // 是否新品  0否  1是
-                'priceOrder': '', // 价格排序
-                'salesOrder': '', // 销量排序
+                'price_order': '', // 价格排序
+                'sales_order': '', // 销量排序
                 'sid': '', // 分类ID
                 'type': '', // 类别 不传
                 'limit': 10,
@@ -279,11 +279,11 @@ export default {
             this.getProList()
         },
         getSealsSort (item) {
-            this.listquery.salesOrder = item.value
+            this.listquery.sales_order = item.value
             this.getProList()
         },
         getPriceSort (item) {
-            this.listquery.priceOrder = item.value
+            this.listquery.price_order = item.value
             this.getProList()
         },
         // 加载更多

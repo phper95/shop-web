@@ -19,10 +19,10 @@
         <div class="product flex">
             <!-- 商品图片 -->
             <div class="left flex mar-right-70">
-                <div class="thumbnail mar-right-20" v-if="storeInfo !== undefined && storeInfo.length!==0">
+                <div class="thumbnail mar-right-20" v-if="store_info !== undefined && store_info.length!==0">
                     <el-image class="img cur-poi mar-bot-20"
                     :src="item"
-                    v-for="(item, index) in storeInfo.sliderImageArr"
+                    v-for="(item, index) in store_info.slider_image_arr"
                     :key="index"
                     @click="changeImg(item)"></el-image>
                 </div>
@@ -39,20 +39,20 @@
                 <div class="productName display-between">
                     <p class="fs28">
                         {{
-                            activityType==0?`${storeInfo.storeName}`
-                            :activityType==1?`${storeInfo.title}`
-                            :activityType==2?`${storeInfo.title}`
-                            :activityType==3?`${storeInfo.title}`:''
+                            activityType==0?`${store_info.store_name}`
+                            :activityType==1?`${store_info.title}`
+                            :activityType==2?`${store_info.title}`
+                            :activityType==3?`${store_info.title}`:''
                         }}
                     </p>
-                    <el-image v-if="activityType!=3" class="collect cur-poi" :src="storeInfo.userCollect?starUrl:star1Url" @click="collectClick"></el-image>
+                    <el-image v-if="activityType!=3" class="collect cur-poi" :src="store_info.userCollect?starUrl:star1Url" @click="collectClick"></el-image>
                 </div>
                 <p class="productInfo abstract col-999 fs16 mar-top-20">
                     {{
-                        activityType==0?`${storeInfo.storeInfo}`
-                        :activityType==1?`${storeInfo.info}`
-                        :activityType==2?`${storeInfo.info}`
-                        :activityType==3?`${storeInfo.info}`:''
+                        activityType==0?`${store_info.store_info}`
+                        :activityType==1?`${store_info.info}`
+                        :activityType==2?`${store_info.info}`
+                        :activityType==3?`${store_info.info}`:''
                     }}
                 </p>
                 <p v-if="activityType!=3" class="fs26 price mar-top-30">
@@ -60,14 +60,14 @@
                 </p>
                 <p v-else class="fs18 price mar-top-30">
                     可砍至
-                    <span class="fs26 col-F26 mar-left-10 mar-right-20">¥{{storeInfo.bargainMinPrice}}</span>
-                    <span class="fs16 col-999 line-through">¥{{storeInfo.price}}</span><span class="bargainNum col-F26 fs16 mar-left-10 tar">已有{{storeInfo.sales}}人已砍价成功</span>
+                    <span class="fs26 col-F26 mar-left-10 mar-right-20">¥{{store_info.bargainMinPrice}}</span>
+                    <span class="fs16 col-999 line-through">¥{{store_info.price}}</span><span class="bargainNum col-F26 fs16 mar-left-10 tar">已有{{store_info.sales}}人已砍价成功</span>
                 </p>
                 <div class="activity display-between mar-top-30" v-if="activityType!=0">
                     <p class="title fs20">{{activityType==1?'秒杀':activityType==2?'拼团':activityType==3?'砍价':''}}</p>
                     <!--  -->
-                    <p class="fs14" v-if="activityType==1">距结束 <span class="fs16">{{ storeInfo.resetTime }}</span></p>
-                    <p class="fs16" v-if="activityType==2">{{ storeInfo.people }}人拼团</p>
+                    <p class="fs14" v-if="activityType==1">距结束 <span class="fs16">{{ store_info.resetTime }}</span></p>
+                    <p class="fs16" v-if="activityType==2">{{ store_info.people }}人拼团</p>
                     <p class="fs16" v-if="activityType==3">邀请好友一起砍价</p>
                 </div>
                 <!-- 优惠券 -->
@@ -75,8 +75,8 @@
                     <div class="title fs18">优惠券：</div>
                     <div class="list flex1" :class="zoom?'lists':''">
                         <div class="listBox display-align mar-bot-10" v-for="(item,index) in couponList" :key="item.id">
-                            <div class="label col-F26 mar-right-10">满{{item.useMinPrice}}减{{item.couponPrice}}</div>
-                            <!-- <div class="listInfo mar-right-10">满{{item.useMinPrice}}减{{item.couponPrice}}</div> -->
+                            <div class="label col-F26 mar-right-10">满{{item.useMinPrice}}减{{item.coupon_price}}</div>
+                            <!-- <div class="listInfo mar-right-10">满{{item.useMinPrice}}减{{item.coupon_price}}</div> -->
                             <!-- <div v-if="!item.isUse" class="underline cur-poi" @click="receive(item)">领取</div>
                             <div v-else class="underline">已领取</div>
                             <span class="mar-left-30" v-if="index===0">
@@ -85,7 +85,7 @@
                             </span>
                         </div>
                     </div>
-                </div> --> 
+                </div> -->
                 <el-divider></el-divider>
                 <!-- 商品规格 -->
                 <div class="specs" v-for="(item,index) in productAttr" :key="index">
@@ -190,9 +190,9 @@
             <el-tabs v-model="activeName" @tab-click="handleClick">
                 <el-tab-pane label="商品详情" name="first">
                     <!-- 商品介绍 -->
-                    <NotFoundInfo class="tableNull" v-if="!storeInfo.description"/>
-                    <div :style="{width: '860px'}" v-html="storeInfo.description" v-else></div>
-                    <!-- <div :style="{width: '860px'}" v-html="storeInfo.description" v-if="activityType==3"></div>
+                    <NotFoundInfo class="tableNull" v-if="!store_info.description"/>
+                    <div :style="{width: '860px'}" v-html="store_info.description" v-else></div>
+                    <!-- <div :style="{width: '860px'}" v-html="store_info.description" v-if="activityType==3"></div>
                     <div v-else>
                         <NotFoundInfo class="tableNull" v-if="!poster"/>
                         <img v-else class="productInfo" :src="poster" alt="">
@@ -245,7 +245,7 @@ export default {
             productData: {},
             productAttr: [],
             productValue: {},
-            storeInfo: [],
+            store_info: [],
             currentProduct: {},
             currentAttr: [],
             addLoading: false,
@@ -293,7 +293,7 @@ export default {
                         break
                 }
                 this.getHotProduct()
-             
+
             },
             deep: true
         }
@@ -326,11 +326,11 @@ export default {
             var res = await getNormalProductDetail(this.productId)
             if (res.status === 200) {
                 this.productData = res.data
-                this.storeInfo = res.data.storeInfo
+                this.store_info = res.data.store_info
                 this.productAttr = res.data.productAttr
                 this.productValue = res.data.productValue
-                this.currentProduct = res.data.storeInfo
-                this.bigImg = res.data.storeInfo.image
+                this.currentProduct = res.data.store_info
+                this.bigImg = res.data.store_info.image
                 this.productAttr.forEach(i => {
                     this.$set(i, 'unfold', false)
                     this.$set(i, 'activeAttr', null)
@@ -343,7 +343,7 @@ export default {
             }
         },
 
-     
+
         // 倒计时方法
         countDownTime (hms) {
             // hms 为毫秒时间戳
@@ -397,7 +397,7 @@ export default {
                 this.$message.warning(res.msg)
             }
         },
-       
+
         // 获取优惠券列表
         async getCoupons () {
             var res = await couponList({
@@ -413,7 +413,7 @@ export default {
         },
         // 领取优惠券
         async receive (item) {
-            var res = await getCoupon({couponId: item.id})
+            var res = await getCoupon({coupon_id: item.id})
             if (res.status === 200) {
                 this.$message.success('领取成功')
             } else {
@@ -432,10 +432,10 @@ export default {
         // 收藏
         collectClick () {
             let params = {
-                id: this.storeInfo.id,
+                id: this.store_info.id,
                 category: 'collect'
             }
-            if (this.storeInfo.userCollect) {
+            if (this.store_info.userCollect) {
                 deleteCollection(params).then(res => this.collectionRes(res))
             } else {
                 addCollection(params).then(res => this.collectionRes(res))
@@ -443,8 +443,8 @@ export default {
         },
         collectionRes (res) {
             if (res.status === 200) {
-                this.storeInfo.userCollect = !this.storeInfo.userCollect
-                this.$message.success(this.storeInfo.userCollect ? '收藏成功' : '取消收藏')
+                this.store_info.userCollect = !this.store_info.userCollect
+                this.$message.success(this.store_info.userCollect ? '收藏成功' : '取消收藏')
             } else {
                 this.$message.warning(res.msg)
             }
@@ -472,7 +472,7 @@ export default {
             }
             this.addLoading = true
             let params = {
-                    productId: this.storeInfo.id,
+                    productId: this.store_info.id,
                     cartNum: this.num,
                     uniqueId: this.currentProduct.unique
                 }
@@ -480,7 +480,7 @@ export default {
             if (this.$route.query.type === '1') {
                 params = {
                     productId: this.currentProduct.productId,
-                    secKillId: this.storeInfo.id,
+                    seckill_id: this.store_info.id,
                     cartNum: this.num,
                     uniqueId: this.currentProduct.unique
                 }
@@ -502,8 +502,8 @@ export default {
             }
             this.addLoading = true
             let params = {
-                isNew: 1,
-                productId: this.storeInfo.id,
+              Is_new: 1,
+                productId: this.store_info.id,
                 cartNum: this.num,
                 uniqueId: this.currentProduct.unique
             }
@@ -511,7 +511,7 @@ export default {
             if (this.$route.query.type === '1') {
                 params = {
                     productId: this.currentProduct.productId,
-                    secKillId: this.storeInfo.id,
+                    seckill_id: this.store_info.id,
                     cartNum: this.num,
                     uniqueId: this.currentProduct.unique
                 }
@@ -522,7 +522,7 @@ export default {
                     this.$router.push({
                         path: '/cart/settlement',
                         query: {
-                            cartId: res.data.cartId
+                            cart_id: res.data.cart_id
                         }
                     })
                 } else {
@@ -557,7 +557,7 @@ export default {
             // 立即购买
             cartAdd({
                 productId: this.currentProduct.productId,
-                combinationId: this.storeInfo.id,
+                combination_id: this.store_info.id,
                 cartNum: this.num,
                 uniqueId: this.currentProduct.unique
             }).then(res => {
@@ -566,7 +566,7 @@ export default {
                     this.$router.push({
                         path: '/cart/settlement',
                         query: {
-                            cartId: res.data.cartId
+                            cart_id: res.data.cart_id
                         }
                     })
                 } else {
