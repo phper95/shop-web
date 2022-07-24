@@ -36,6 +36,26 @@ export function getProducts (params) {
     })
 }
 
+//搜索商品
+export function searchProducts (params) {
+  // {
+  //     'is_integral': 0, // 是否积分兑换商品 0否  1是
+  //     'keyword': '', // 关键
+  //     'news': '', // 是否新品  0否  1是
+  //     'price_order': '', // 价格排序  desc正序  asc倒序
+  //     'sales_order': '', // 销量排序
+  //     'sid': '', // 分类ID
+  //     'type': '', // 类别 不传
+  //     'limit': 10,
+  //     'page': 1
+  // }
+  return request({
+    url: '/product/search',
+    method: 'get',
+    params
+  })
+}
+
 // 普通商品详情
 export function getNormalProductDetail (id) {
     return request({

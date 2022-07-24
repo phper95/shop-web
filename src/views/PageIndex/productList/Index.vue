@@ -95,6 +95,7 @@ import NotFoundInfo from '@/components/NotFound/NotFoundInfo.vue'
 import DropDown from '@/components/common/dropDown.vue'
 import {
     getProducts,
+  searchProducts,
     getCategory
 } from '@/api/indexpage.js'
 export default {
@@ -197,7 +198,7 @@ export default {
         // 商品查询
         async getProList () {
             this.loading = true
-            var res = await getProducts(this.listquery)
+            var res = await searchProducts(this.listquery)
             if (res.status === 200) {
                 //this.productList = this.productList.concat(res.data)
                 this.productList = res.data
