@@ -128,12 +128,12 @@ export default {
                 {'value': 0, 'label': '否'}
             ],
             priceSorts: [
-                {'value': 'desc', 'label': '价格正序'},
-                {'value': 'asc', 'label': '价格倒序'}
+                {'value': 'desc', 'label': '价格倒序'},
+                {'value': 'asc', 'label': '价格正序'}
             ],
             sealsSorts: [
-                {'value': 'desc', 'label': '销量正序'},
-                {'value': 'asc', 'label': '销量倒序'}
+                {'value': 'desc', 'label': '销量倒序'},
+                {'value': 'asc', 'label': '销量正序'}
             ],
             fatherType: '',
             isShow: false,
