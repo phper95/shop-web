@@ -32,7 +32,7 @@
                                     <div>{{ i.sku }}</div>
                                 </div>
                             </div>
-                            <div v-if="item.status !== -1 && item.status !== -2" class="buyAgain" @click="toPageId('/', i.attrProductId)">再次购买</div>
+                            <div v-if="item.status !== -1 && item.status !== -2" class="buyAgain" @click="toPageId('/', i.attr_product_id)">再次购买</div>
                             <div class="buyAgain" v-if="item.status === -1" >售后中</div>
                             <div v-if="item.status === -2" class="buyAgain">售后完成</div>
                             <div class="itemPrice">￥{{ i.truePrice }}</div>

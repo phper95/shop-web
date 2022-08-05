@@ -120,7 +120,7 @@ export default {
                     if (item.isReply === 0) {
                         return {
                             'id': item.id,
-                            'productId': item.productId,
+                            'product_id': item.product_id,
                             'combination_id': item.combination_id,
                             'seckill_id': item.seckill_id,
                             'unique': item.unique,

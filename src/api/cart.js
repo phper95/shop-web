@@ -7,10 +7,10 @@ import request from '@/axios/request.js'
 export function cartAdd (data) {
     // {
     //     "bargain_id": 0, 产品砍价ID
-    //     "cartNum": 0, 购物车数量
+    //     "cart_num": 0, 购物车数量
     //     "combination_id": 0, 产品拼团ID
     //     "new": 0, 是否新购买
-    //     "productId": 0, 产品ID
+    //     "product_id": 0, 产品ID
     //     "seckill_id": 0, 产品秒杀ID
     //     "uniqueId": "" 唯一的ID
     // }

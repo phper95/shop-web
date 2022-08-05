@@ -23,7 +23,7 @@ export default {
             this.$router.push({
                 path: '/productDetail',
                 query: {
-                    productId: id,
+                    product_id: id,
                     type: type
                 }
             })

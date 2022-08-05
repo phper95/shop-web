@@ -242,8 +242,8 @@ export default {
                     'productInfoId': i.productInfo.id,
                     'attrid': i.productInfo.attrInfo.id,
                     'combination_id': i.combination_id,
-                    'productId': i.productId,
-                    'attrProductId': i.productInfo.attrInfo.productId,
+                    'product_id': i.product_id,
+                    'attrproduct_id': i.productInfo.attrInfo.product_id,
                     'cartNum': i.cartNum,
                     'isReply': i.isReply, // 是否评价
                     'truePrice': i.truePrice,
@@ -345,7 +345,7 @@ export default {
                     // 传参商品详情页路径、商品id
                     this.NavTo(
                         '/',
-                        {'productId': ''}
+                        {'product_id': ''}
                     )
                     break
                 default:

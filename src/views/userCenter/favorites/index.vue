@@ -4,13 +4,13 @@
         <el-divider></el-divider>
         <div v-loading="loading" v-if="!noGoods">
             <div class="favoritesList flex">
-                <div class="favoritesBox mar-bot-30" v-for="(item) in favoritesList" :key="item.productId">
-                    <img class="cur-poi" :src="item.product.image" alt="" @click="toDetail(item.productId)">
+                <div class="favoritesBox mar-bot-30" v-for="(item) in favoritesList" :key="item.product_id">
+                    <img class="cur-poi" :src="item.product.image" alt="" @click="toDetail(item.product_id)">
                     <div class="pad-15">
                         <p class="col-666 overflow">{{item.product.store_name}}</p>
                         <div class="mar-top-10">
                             <span class="col-333 bold">¥{{item.product.price}}</span>
-                            <span class="fr col-666 cur-poi" @click="del(item.productId)">删除</span>
+                            <span class="fr col-666 cur-poi" @click="del(item.product_id)">删除</span>
                         </div>
                     </div>
                 </div>
@@ -77,7 +77,7 @@ export default {
             this.$router.push({
                 path: '/productDetail',
                 query: {
-                    productId: id
+                    product_id: id
                 }
             })
         },
