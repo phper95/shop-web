@@ -103,7 +103,7 @@ export default {
     components: {ProductItem, NotFoundInfo, DropDown},
     data () {
         return {
-            listquery: {
+            listQuery: {
                 'is_integral': 0, // 是否积分兑换商品 0否  1是
                 'keyword': '', // 关键
                 'news': '', // 是否新品  0否  1是
@@ -146,7 +146,7 @@ export default {
         }
     },
     created () {
-        this.listquery.keyword = this.$route.query.keyword || ''
+        this.listQuery.keyword = this.$route.query.keyword || ''
         this.fatherType = this.$route.query.type1 || ''
         this.sonType = this.$route.query.type2 || ''
         this.getCateList()
@@ -155,7 +155,7 @@ export default {
     watch: {
         $route: {
             handler (nVal, oVal) {
-                this.listquery.keyword = nVal.query.keyword || ''
+                this.listQuery.keyword = nVal.query.keyword || ''
                 this.getProList()
             }
         }
@@ -177,11 +177,11 @@ export default {
                     res.map(item => {
                         return {
                             'value': `${item.id}`,
-                            'label': `${item.cateName}`,
+                            'label': `${item.cate_name}`,
                             'children': item.children.map(i => {
                                 return {
                                     'value': `${i.id}`,
-                                    'label': `${i.cateName}`,
+                                    'label': `${i.cate_name}`,
                                     'children': `${i.children}`
                                 }
                             })
@@ -198,7 +198,7 @@ export default {
         // 商品查询
         async getProList () {
             this.loading = true
-            var res = await searchProducts(this.listquery)
+            var res = await searchProducts(this.listQuery)
             if (res.status === 200) {
                 //this.productList = this.productList.concat(res.data)
                 this.productList = res.data
@@ -228,8 +228,8 @@ export default {
             }
             this.loadingType = false
             this.initQuery(item)
-            this.listquery.sid = item.value
-            getProducts(this.listquery).then(res => {
+            this.listQuery.sid = item.value
+            getProducts(this.listQuery).then(res => {
                 if (res.status === 200) {
                     this.productList = res.data
                     this.loading = false
@@ -262,8 +262,8 @@ export default {
             this.breadSon = item.label
             this.loading = true
             this.initQuery(item)
-            this.listquery.sid = item.value
-            getProducts(this.listquery).then(res => {
+            this.listQuery.sid = item.value
+            getProducts(this.listQuery).then(res => {
                 if (res.status === 200) {
                     this.productList = res.data
                 }
@@ -271,25 +271,25 @@ export default {
             })
         },
         initQuery (item) {
-            this.listquery.sid = item.value
-            this.listquery.page = 1
+            this.listQuery.sid = item.value
+            this.listQuery.page = 1
         },
         // 新品排序
         getNewsSort (item) {
-            this.listquery.news = item.value
+            this.listQuery.news = item.value
             this.getProList()
         },
         getSealsSort (item) {
-            this.listquery.sales_order = item.value
+            this.listQuery.sales_order = item.value
             this.getProList()
         },
         getPriceSort (item) {
-            this.listquery.price_order = item.value
+            this.listQuery.price_order = item.value
             this.getProList()
         },
         // 加载更多
         getMore () {
-            this.listquery.page++
+            this.listQuery.page++
             this.getProList()
         }
     }

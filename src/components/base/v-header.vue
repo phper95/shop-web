@@ -15,7 +15,7 @@
             <label class="cur-poi">我的订单</label>
           </router-link>
           <router-link to="/shoppingCart">
-            <el-badge :value="cart_num" class="cart_num">
+            <el-badge :value="cartNum" class="cartNum">
               <el-image class="gwc-icon" src="../../../static/images/gwc.png" />
             </el-badge>
           </router-link>
@@ -60,7 +60,7 @@ import {cartCount} from '@/api/cart.js'
     },
     computed: {
         ...mapGetters([
-          'cart_num' // 购物车商品数量
+          'cartNum' // 购物车商品数量
         ])
     },
     mounted () {

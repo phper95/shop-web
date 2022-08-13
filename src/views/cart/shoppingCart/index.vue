@@ -2,7 +2,7 @@
     <div class="shoppingCart banxin">
         <div class="top">
             <span class="fs24 col-333 bold">全部商品</span>
-            <span class="fs16 col-999">共{{cart_num}}件</span>
+            <span class="fs16 col-999">共{{cartNum}}件</span>
         </div>
         <div class="content flex">
             <!-- 商品列表 -->
@@ -33,7 +33,7 @@
                                     </div>
                                 </div>
                                 <div class="number flex1">
-                                    <el-input-number v-model="item.cart_num" @change="handleChange(item.id,item.cart_num)" :min="1" :max="item.productInfo.attrInfo.stock" size="mini"></el-input-number>
+                                    <el-input-number v-model="item.cart_num" @change="handleChange(item.id,item.cart_num)" :min="1" :max="item.product_info.attr_info.stock" size="mini"></el-input-number>
                                 </div>
                                 <div class="price flex flex1 tac">
                                     <div>
@@ -143,7 +143,7 @@ export default {
     },
     computed: {
         ...mapGetters([
-          'cart_num' // 购物车商品数量
+          'cartNum' // 购物车商品数量
         ])
     },
     mounted () {
@@ -217,7 +217,7 @@ export default {
             this.postage = 0
             this.cartList.forEach(i => {
                 if (i.selected) {
-                    this.total_price += i.cart_num * Number(i.productInfo.attr_info.price)
+                    this.total_price += i.cart_num * Number(i.product_info.attr_info.price)
                     this.postage += Number(i.product_info.postage)
                 }
             })
