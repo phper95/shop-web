@@ -88,10 +88,10 @@
                 </div> -->
                 <el-divider></el-divider>
                 <!-- 商品规格 -->
-                <div class="specs" v-for="(item,index) in productAttr" :key="index">
+                <div class="specs" v-for="(item,index) in product_attr" :key="index">
                     <div v-if="activityType!==3" class="color" :class="item.unfold?'colors':''">
                         <p class="fs18 display-align">
-                            {{item.attrName}}：<span class="mar-left-5">{{item.activeAttr?item.activeAttr:'请选择'}}</span>
+                            {{item.attr_name}}：<span class="mar-left-5">{{item.activeAttr?item.activeAttr:'请选择'}}</span>
                             <el-image v-if="!item.unfold"
                             class="xl mar-left-5 cur-poi"
                             src="static/images/xl@2x.png"
@@ -201,7 +201,7 @@
                 <el-tab-pane label="商品评价" name="second">
                     <!-- 评价 -->
                     <div class="evaluate">
-                        <ProductEvaluate :productId="productId"></ProductEvaluate>
+                        <ProductEvaluate :product_id="product_id"></ProductEvaluate>
                     </div>
                 </el-tab-pane>
             </el-tabs>
@@ -243,7 +243,7 @@ export default {
     data () {
         return {
             productData: {},
-            productAttr: [],
+            product_attr: [],
             productValue: {},
             store_info: [],
             currentProduct: {},
@@ -261,7 +261,7 @@ export default {
             num: 1,
             activityType: this.$route.query.type,
             qrCode: false,
-            productId: this.$route.query.productId,
+            product_id: this.$route.query.product_id,
             poster: '',
             imgList: [{
                 id: 1,
@@ -285,7 +285,7 @@ export default {
         }
     },
     watch: {
-        productId: {
+        product_id: {
             handler (newVal, oldVal) {
                 switch (this.$route.query.type) {
                     case '0':
@@ -318,20 +318,20 @@ export default {
         }),
 
         // 刷新页面
-        reload (id) { this.productId = id },
+        reload (id) { this.product_id = id },
 
         // 普通商品详情
         async getProductDetail () {
             // const dataLoading = this.openLoading()
-            var res = await getNormalProductDetail(this.productId)
+            var res = await getNormalProductDetail(this.product_id)
             if (res.status === 200) {
                 this.productData = res.data
                 this.store_info = res.data.store_info
-                this.productAttr = res.data.productAttr
-                this.productValue = res.data.productValue
+                this.product_attr = res.data.product_attr
+                this.product_value = res.data.product_value
                 this.currentProduct = res.data.store_info
                 this.bigImg = res.data.store_info.image
-                this.productAttr.forEach(i => {
+                this.product_attr.forEach(i => {
                     this.$set(i, 'unfold', false)
                     this.$set(i, 'activeAttr', null)
                     this.$set(i, 'activeIndex', null)
@@ -401,7 +401,7 @@ export default {
         // 获取优惠券列表
         async getCoupons () {
             var res = await couponList({
-                productId: `${this.productId}`,
+                product_id: `${this.product_id}`,
                 limit: `${this.limit}`,
                 page: `${this.page}`
             })
@@ -472,14 +472,14 @@ export default {
             }
             this.addLoading = true
             let params = {
-                    productId: this.store_info.id,
+                    product_id: this.store_info.id,
                     cartNum: this.num,
                     uniqueId: this.currentProduct.unique
                 }
             // 秒杀商品处理
             if (this.$route.query.type === '1') {
                 params = {
-                    productId: this.currentProduct.productId,
+                    product_id: this.currentProduct.product_id,
                     seckill_id: this.store_info.id,
                     cartNum: this.num,
                     uniqueId: this.currentProduct.unique
@@ -503,14 +503,14 @@ export default {
             this.addLoading = true
             let params = {
               Is_new: 1,
-                productId: this.store_info.id,
+                product_id: this.store_info.id,
                 cartNum: this.num,
                 uniqueId: this.currentProduct.unique
             }
             // 秒杀商品处理
             if (this.$route.query.type === '1') {
                 params = {
-                    productId: this.currentProduct.productId,
+                    product_id: this.currentProduct.product_id,
                     seckill_id: this.store_info.id,
                     cartNum: this.num,
                     uniqueId: this.currentProduct.unique
@@ -538,7 +538,7 @@ export default {
             this.$router.push({
                 path: '/productDetail',
                 query: {
-                productId: this.$route.query.normalId,
+                product_id: this.$route.query.normalId,
                 type: 0
                 }
             })
@@ -556,7 +556,7 @@ export default {
             }
             // 立即购买
             cartAdd({
-                productId: this.currentProduct.productId,
+                product_id: this.currentProduct.product_id,
                 combination_id: this.store_info.id,
                 cartNum: this.num,
                 uniqueId: this.currentProduct.unique

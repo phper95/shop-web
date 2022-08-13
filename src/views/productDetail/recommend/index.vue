@@ -25,15 +25,15 @@ export default {
     props: ['list'],
     methods: {
         lookProductDetail (id) {
-            console.log(this.$route.query.productId, id)
-            if (this.$route.query.productId === `${id}`) {
+            console.log(this.$route.query.product_id, id)
+            if (this.$route.query.product_id === `${id}`) {
                 this.$message.warning('该内容为当前商品')
                 return
             }
             this.$router.push({
                 path: '/productDetail',
                 query: {
-                    productId: id,
+                    product_id: id,
                     type: 0
                 }
             })
@@ -45,7 +45,7 @@ export default {
                 'cartNum': 1,
                 'combination_id': 0,
                 'new': 0,
-                'productId': id,
+                'product_id': id,
                 'seckill_id': 0,
                 'uniqueId': ''
             }).then(res => {

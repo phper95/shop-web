@@ -23,7 +23,7 @@ export default {
             this.$router.push({
                 path: '/productDetail',
                 query: {
-                productId: id,
+                product_id: id,
                 type: type
                 }
             })
@@ -31,10 +31,10 @@ export default {
         toCart (id) {
             cartAdd({
                 'bargain_id': 0,
-                'cartNum': 1,
+                'cart_num': 1,
                 'combination_id': 0,
                 'new': 0,
-                'productId': id,
+                'product_id': id,
                 'seckill_id': 0,
                 'uniqueId': ''
             }).then(res => {

@@ -81,7 +81,7 @@
                                     </div>
                             </div>
                             <div class="num display-center flex1">
-                                <p class="fs18">x{{item.cartNum}}</p>
+                                <p class="fs18">x{{item.cart_num}}</p>
                             </div>
                             <div class="price flex1 display-center">
                                 <p class="currentPrice mar-bot-10 fs20">¥{{item.productInfo.attrInfo.price}}</p>
@@ -281,7 +281,7 @@ export default {
                 if (res.status === 200) {
                     this.settlementData = res.data
                     this.settlementData.cart_info.forEach(item => {
-                        this.amount += parseInt(item.cartNum)
+                        this.amount += parseInt(item.cart_num)
                     })
                     this.defaultAddress = res.data.addressInfo
                     this.defaultStore = res.data.systemStore

@@ -160,11 +160,11 @@ export default {
                 res.map(item => {
                     return {
                         'value': `${item.id}`,
-                        'label': `${item.cateName}`,
+                        'label': `${item.cate_name}`,
                         'children': item.children.map(i => {
                           return {
                             value: i.id,
-                            label: i.cateName,
+                            label: i.cate_name,
                             pic: i.pic
                           }
                         })
@@ -214,7 +214,7 @@ export default {
       this.$router.push({
         path: '/productDetail',
         query: {
-          productId: id,
+          product_id: id,
           type: type
         }
       })

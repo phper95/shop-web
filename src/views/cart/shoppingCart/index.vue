@@ -24,7 +24,7 @@
                                     <el-image :src="item.selected?xz:wz" @click="select(item)"></el-image>
                                 </div>
                                 <div class="productInfo flex flex3">
-                                    <el-image class="cur-poi" :src="item.productInfo.attrInfo.image" @click="toDetail(item.productId)"></el-image>
+                                    <el-image class="cur-poi" :src="item.productInfo.attrInfo.image" @click="toDetail(item.product_id)"></el-image>
                                     <div class="mar-left-20 fs16">
                                         <p class="productName mar-bot-20">{{item.productInfo.store_name}}</p>
                                         <div class="size">
@@ -33,7 +33,7 @@
                                     </div>
                                 </div>
                                 <div class="number flex1">
-                                    <el-input-number v-model="item.cartNum" @change="handleChange(item.id,item.cartNum)" :min="1" :max="item.productInfo.attrInfo.stock" size="mini"></el-input-number>
+                                    <el-input-number v-model="item.cart_num" @change="handleChange(item.id,item.cart_num)" :min="1" :max="item.product_info.attr_info.stock" size="mini"></el-input-number>
                                 </div>
                                 <div class="price flex flex1 tac">
                                     <div>
@@ -52,7 +52,7 @@
                                     <!-- <img src="static/images/wz@2x.png" alt=""> -->
                                 </div>
                                 <div class="productInfo flex flex3">
-                                    <el-image class="cur-poi" :src="item.productInfo.image" @click="toDetail(item.productId)"></el-image>
+                                    <el-image class="cur-poi" :src="item.productInfo.image" @click="toDetail(item.product_id)"></el-image>
                                     <div class="mar-left-20 fs16">
                                         <p class="productName mar-bot-20">{{item.productInfo.store_name}}</p>
                                         <div class="size">
@@ -61,7 +61,7 @@
                                     </div>
                                 </div>
                                 <div class="number flex1">
-                                    <el-input-number v-model="item.cartNum" @change="handleChange(item.id,item.cartNum)" :min="1" :max="item.productInfo.stock" size="mini"></el-input-number>
+                                    <el-input-number v-model="item.cart_num" @change="handleChange(item.id,item.cart_num)" :min="1" :max="item.productInfo.stock" size="mini"></el-input-number>
                                 </div>
                                 <div class="price flex flex1 tac">
                                     <div>
@@ -186,7 +186,7 @@ export default {
             this.$router.push({
                 path: '/productDetail',
                 query: {
-                    productId: id
+                    product_id: id
                 }
             })
         },
@@ -217,8 +217,8 @@ export default {
             this.postage = 0
             this.cartList.forEach(i => {
                 if (i.selected) {
-                    this.total_price += i.cartNum * Number(i.productInfo.attrInfo.price)
-                    this.postage += Number(i.productInfo.postage)
+                    this.total_price += i.cart_num * Number(i.product_info.attr_info.price)
+                    this.postage += Number(i.product_info.postage)
                 }
             })
         },

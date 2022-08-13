@@ -60,7 +60,7 @@ import {
 } from '@/api/reply.js'
 export default {
     name: 'productEvaluate',
-    props: ['productId'],
+    props: ['product_id'],
     data () {
         return {
             radio: 0,
@@ -75,8 +75,8 @@ export default {
         }
     },
     mounted () {
-        //this.getReply(this.productId)
-        this.getReplyList(this.productId)
+        //this.getReply(this.product_id)
+        this.getReplyList(this.product_id)
     },
     methods: {
         // 获取商品评论数据
@@ -117,13 +117,13 @@ export default {
             this.total = val === 0 ? this.evaluateData.sumCount : val === 1 ? this.evaluateData.goodCount : val === 2 ? this.evaluateData.inCount : this.evaluateData.poorCount
             this.evaluateList = []
             this.page = 1
-            this.getReplyList(this.productId)
+            this.getReplyList(this.product_id)
         },
 
         // 翻页
         getMore () {
             this.page += 1
-            this.getReplyList(this.productId)
+            this.getReplyList(this.product_id)
         }
     }
 }
