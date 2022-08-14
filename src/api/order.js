@@ -21,6 +21,7 @@ import request from '@/axios/request.js'
 
 // 订单列表
 export function getOrderList (params) {
+  console.log("getOrderList params",params)
     // {
     //     'limit': 10,
     //     'page': 1,
@@ -123,6 +124,15 @@ export function detailOrder (key) {
         url: `/order/detail/${key}`,
         method: 'get'
     })
+}
+
+
+// 订单搜索
+export function searchOrder (keyword) {
+  return request({
+    url: `/order/search/${keyword}`,
+    method: 'get'
+  })
 }
 
 // 物流信息

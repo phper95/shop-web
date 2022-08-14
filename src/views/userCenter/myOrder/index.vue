@@ -113,6 +113,7 @@ import NFInfo from '@/components/NotFound/NotFoundInfo.vue'
 import {
   getOrderList,
   detailOrder,
+  searchOrder,
   deleteOrder,
   cancelOrder,
   takeOrder
@@ -200,15 +201,15 @@ export default {
     },
     // 查询按钮部分——根据订单号或商品查询
     searchBtn () {
-      var order_id = `${this.$refs.searchOrder.value}`
-      if (order_id.length === 0) {
+      var keyword = `${this.$refs.searchOrder.value}`
+      if (keyword.length === 0) {
         this.$message.warning('请输入要搜索的商品或订单号')
         return
       }
-      detailOrder(this.$refs.searchOrder.value).then(res => {
-        console.log(res)
+      searchOrder(this.$refs.searchOrder.value).then(res => {
+        console.log("searchOrder",res)
         if (res.status === 200) {
-          this.getObjData(res)
+          this.getItemData(res)
           this.orderQuery = {
             'limit': 10,
             'page': 1,
@@ -217,6 +218,19 @@ export default {
           this.isActive = 0
         }
       })
+        // ,
+        // detailOrder(this.$refs.searchOrder.value).then(res => {
+        //   console.log("detailOrder",res)
+        //   if (res.status === 200) {
+        //     this.getObjData(res)
+        //     this.orderQuery = {
+        //       'limit': 10,
+        //       'page': 1,
+        //       'type': -1
+        //     }
+        //     this.isActive = 0
+        //   }
+        // })
     },
     // 解析多个订单数据
     getItemData (res) {
