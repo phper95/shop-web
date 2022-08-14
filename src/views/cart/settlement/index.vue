@@ -73,19 +73,19 @@
                     </div>
                     <div class="productList">
                         <div class="product flex fs16" v-for="(item) in settlementData.cart_info" :key="item.id">
-                            <el-image class="mar-right-20" :src="item.productInfo.attrInfo.image" ></el-image>
+                            <el-image class="mar-right-20" :src="item.product_info.attr_info.image" ></el-image>
                             <div class="productInfo display-column mar-right-20 flex2">
-                                <p class="productName mar-bot-20">{{item.productInfo.store_name}}</p>
+                                <p class="productName mar-bot-20">{{item.product_info.store_name}}</p>
                                     <div class="size">
-                                        <p>{{item.productInfo.attrInfo.sku}}</p>
+                                        <p>{{item.product_info.attr_info.sku}}</p>
                                     </div>
                             </div>
                             <div class="num display-center flex1">
                                 <p class="fs18">x{{item.cart_num}}</p>
                             </div>
                             <div class="price flex1 display-center">
-                                <p class="currentPrice mar-bot-10 fs20">¥{{item.productInfo.attrInfo.price}}</p>
-                                <p class="originalPrice line-through col-999">¥{{item.productInfo.attrInfo.otPrice}}</p>
+                                <p class="currentPrice mar-bot-10 fs20">¥{{item.product_info.attr_info.price}}</p>
+                                <p class="originalPrice line-through col-999">¥{{item.product_info.attr_info.otPrice}}</p>
                             </div>
                         </div>
                     </div>
@@ -278,12 +278,13 @@ export default {
             confirmOrder({
                 cart_id: this.$route.query.cart_id
             }).then(res => {
+              console.log(" res.data", res.data)
                 if (res.status === 200) {
                     this.settlementData = res.data
                     this.settlementData.cart_info.forEach(item => {
                         this.amount += parseInt(item.cart_num)
                     })
-                    this.defaultAddress = res.data.addressInfo
+                    this.defaultAddress = res.data.address_info
                     this.defaultStore = res.data.systemStore
                     if (this.defaultAddress === null) {
                         this.defaultAddress = this.addressList[0]
@@ -297,7 +298,7 @@ export default {
         },
         // 计算订单金额
         computedAmount () {
-            computedOrder(this.settlementData.orderKey, {
+            computedOrder(this.settlementData.order_key, {
                     addressId: this.defaultAddress.id,
                     bargain_id: 0,
                     combination_id: 0,
@@ -307,6 +308,7 @@ export default {
                     shipping_type: this.activeMethod,
                     use_integral: 0
             }).then(res => {
+              console.log("computedAmount res",res)
                 if (res.status === 200) {
                     this.orderPrice = res.data.result
                     this.orderPrice.webPrice = this.orderPrice.pay_price
@@ -499,7 +501,7 @@ export default {
         // 提交订单
         submit () {
             this.btnLoading = true
-            createOrder(this.settlementData.orderKey, {
+            createOrder(this.settlementData.order_key, {
                 addressId: this.defaultAddress.id,
                 //bargain_id: 0,
                 //combination_id: 0,

@@ -17,7 +17,7 @@
           ref="searchOrder"
           @keyup.enter="searchBtn"
           type="text"
-          placeholder="请输入订单号"
+          placeholder="请输入商品名或订单号"
           ><button @click="searchBtn">搜索</button>
         </div>
       </ul>
@@ -245,7 +245,7 @@ export default {
       // 3：待评价
       // 4: 已评价
       // -1：已退款
-      console.log(res.data)
+      console.log("res.data",res.data)
       this.itemList = res.data && res.data.map(item => {
         if (item.paid === 0) { // 已支付为1
           // 未支付
@@ -274,17 +274,17 @@ export default {
           'cart_info': item.cart_info.map(i => {
             return {
               'id': i.id,
-              'productInfoId': i.productInfo.id,
-              'attrid': i.productInfo.attrInfo.id,
-              'isReply': i.isReply,
+              'product_info_id': i.product_info.id,
+              'attrid': i.product_info.attr_info.id,
+              'is_reply': i.is_reply,
               'combination_id': i.combination_id,
               'product_id': i.product_id,
-              'attr_product_id': i.productInfo.attrInfo.product_id,
-              'cartNum': i.cartNum,
-              'truePrice': i.truePrice,
-              'store_name': i.productInfo.store_name,
-              'img': i.productInfo.attrInfo.image,
-              'sku': i.productInfo.attrInfo.sku
+              'attr_product_id': i.product_info.attr_info.product_id,
+              'cartNum': i.cart_num,
+              'truePrice': i.true_price,
+              'store_name': i.product_info.store_name,
+              'img': i.product_info.attr_info.image,
+              'sku': i.product_info.attr_info.sku
             }
           })
         }
@@ -315,16 +315,16 @@ export default {
           'cart_info': res.data.cart_info.map(i => {
             return {
               'cart_id': i.id,
-              'productInfoId': i.productInfo.id,
-              'attrid': i.productInfo.attrInfo.id,
+              'product_info_id': i.product_info.id,
+              'attrid': i.product_info.attr_info.id,
               'combination_id': i.combination_id,
               'product_id': i.product_id,
-              'attr_product_id': i.productInfo.attrInfo.product_id,
-              'cartNum': i.cartNum,
-              'truePrice': i.truePrice,
-              'store_name': i.productInfo.store_name,
-              'img': i.productInfo.attrInfo.image,
-              'sku': i.productInfo.attrInfo.sku
+              'attr_product_id': i.product_info.attr_info.product_id,
+              'cartNum': i.cart_num,
+              'truePrice': i.true_price,
+              'store_name': i.product_info.store_name,
+              'img': i.product_info.attr_info.image,
+              'sku': i.product_info.attr_info.sku
             }
           })
       }]

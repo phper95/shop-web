@@ -24,11 +24,11 @@
                                     <el-image :src="item.selected?xz:wz" @click="select(item)"></el-image>
                                 </div>
                                 <div class="productInfo flex flex3">
-                                    <el-image class="cur-poi" :src="item.productInfo.attrInfo.image" @click="toDetail(item.product_id)"></el-image>
+                                    <el-image class="cur-poi" :src="item.product_info.attr_info.image" @click="toDetail(item.product_id)"></el-image>
                                     <div class="mar-left-20 fs16">
-                                        <p class="productName mar-bot-20">{{item.productInfo.store_name}}</p>
+                                        <p class="productName mar-bot-20">{{item.product_info.store_name}}</p>
                                         <div class="size">
-                                            <p class="col-999">{{item.productInfo.attrInfo.sku}}</p>
+                                            <p class="col-999">{{item.product_info.attr_info.sku}}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -37,8 +37,8 @@
                                 </div>
                                 <div class="price flex flex1 tac">
                                     <div>
-                                        <p class="currentPrice mar-bot-10 fs18">¥{{item.productInfo.attrInfo.price}}</p>
-                                        <p class="originalPrice line-through col-999 fs14">¥{{item.productInfo.attrInfo.otPrice}}</p>
+                                        <p class="currentPrice mar-bot-10 fs18">¥{{item.product_info.attr_info.price}}</p>
+                                        <p class="originalPrice line-through col-999 fs14">¥{{item.product_info.attr_info.otPrice}}</p>
                                     </div>
                                     <p class="fs18 cur-poi" @click="delCart(item.id)">删除</p>
                                 </div>
@@ -52,21 +52,21 @@
                                     <!-- <img src="static/images/wz@2x.png" alt=""> -->
                                 </div>
                                 <div class="productInfo flex flex3">
-                                    <el-image class="cur-poi" :src="item.productInfo.image" @click="toDetail(item.product_id)"></el-image>
+                                    <el-image class="cur-poi" :src="item.product_info.image" @click="toDetail(item.product_id)"></el-image>
                                     <div class="mar-left-20 fs16">
-                                        <p class="productName mar-bot-20">{{item.productInfo.store_name}}</p>
+                                        <p class="productName mar-bot-20">{{item.product_info.store_name}}</p>
                                         <div class="size">
-                                            <!-- <p class="col-999">{{item.productInfo.sku}}</p> -->
+                                            <!-- <p class="col-999">{{item.product_info.sku}}</p> -->
                                         </div>
                                     </div>
                                 </div>
                                 <div class="number flex1">
-                                    <el-input-number v-model="item.cart_num" @change="handleChange(item.id,item.cart_num)" :min="1" :max="item.productInfo.stock" size="mini"></el-input-number>
+                                    <el-input-number v-model="item.cart_num" @change="handleChange(item.id,item.cart_num)" :min="1" :max="item.product_info.stock" size="mini"></el-input-number>
                                 </div>
                                 <div class="price flex flex1 tac">
                                     <div>
-                                        <p class="currentPrice mar-bot-10 fs18">¥{{item.productInfo.price}}</p>
-                                        <p class="originalPrice line-through col-999 fs14">¥{{item.productInfo.otPrice}}</p>
+                                        <p class="currentPrice mar-bot-10 fs18">¥{{item.product_info.price}}</p>
+                                        <p class="originalPrice line-through col-999 fs14">¥{{item.product_info.otPrice}}</p>
                                     </div>
                                     <p class="del fs18 cur-poi" @click="delCart(item.id)">删除</p>
                                 </div>

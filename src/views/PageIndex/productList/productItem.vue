@@ -36,7 +36,7 @@ export default {
                 'new': 0,
                 'product_id': id,
                 'seckill_id': 0,
-                'uniqueId': ''
+                'unique_id': ''
             }).then(res => {
                 if (res.status === 200) {
                 } else {

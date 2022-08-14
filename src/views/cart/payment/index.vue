@@ -98,7 +98,7 @@ export default {
         console.log(this.$route.query)
         this.money = this.$route.query.price
         this.order_id = this.$route.query.order_id
-        //this.orderKey = this.$route.query.jsConfig.codeUrl || '暂无有效订单'
+        //this.orderKey = this.$route.query.js_config.codeUrl || '暂无有效订单'
         // this.orderKey = this.$route.query.key
         this.resetTimes(this.$route.query.create_time)
     },
@@ -133,7 +133,7 @@ export default {
             }).then(res => {
 
                 if (res.status === 200) {
-                    this.orderKey = res.data.result.jsConfig.codeUrl
+                    this.orderKey = res.data.result.js_config.code_url
                     //  detailOrder(this.order_id).then(res => {
 
                     //     if (res.data.paid === 1) {

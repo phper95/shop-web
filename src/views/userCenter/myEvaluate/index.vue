@@ -126,16 +126,16 @@ export default {
             'cart_info': item.cart_info.map(i => {
                 return {
                 'id': i.id,
-                'productInfoId': i.productInfo.id,
-                'attrid': i.productInfo.attrInfo.id,
+                'product_info_id': i.product_info.id,
+                'attrid': i.product_info.attr_info.id,
                 'combination_id': i.combination_id,
                 'product_id': i.product_id,
-                'attrproduct_id': i.productInfo.attrInfo.product_id,
-                'cartNum': i.cartNum,
-                'truePrice': i.truePrice,
-                'store_name': i.productInfo.store_name,
-                'img': i.productInfo.attrInfo.image,
-                'sku': i.productInfo.attrInfo.sku
+                'attrproduct_id': i.product_info.attr_info.product_id,
+                'cart_num': i.cart_num,
+                'truePrice': i.true_price,
+                'store_name': i.product_info.store_name,
+                'img': i.product_info.attr_info.image,
+                'sku': i.product_info.attr_info.sku
                 }
             })
             }

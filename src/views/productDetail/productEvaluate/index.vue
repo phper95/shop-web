@@ -14,7 +14,7 @@
                     <el-image class="avatar mar-right-20" :src="item.avatar"></el-image>
                     <div class="flex1">
                         <p class="mar-bot-10">{{item.nickname}}</p>
-                        <el-rate :colors="color" v-model="item.productScore" disabled></el-rate>
+                        <el-rate :colors="color" v-model="item.product_score" disabled></el-rate>
                     </div>
                     <p class="col-999">{{item.create_time | comverTime('YYYY-MM-DD HH:mm')}}</p>
                 </div>
@@ -31,9 +31,9 @@
                     </el-image>
                 </div>
                 <div class="spec mar-top-30 col-666">规格：{{item.sku}}</div>
-                <div class="reply mar-top-20" v-if="item.merchantReplyTime">
-                    <p>商家回复：{{item.merchantReplyContent}}</p>
-                    <p class="mar-top-20 tar">{{item.merchantReplyTime | comverTime('YYYY-MM-DD HH:mm')}}</p>
+                <div class="reply mar-top-20" v-if="item.merchant_reply_time">
+                    <p>商家回复：{{item.merchant_reply_content}}</p>
+                    <p class="mar-top-20 tar">{{item.merchant_reply_time | comverTime('YYYY-MM-DD HH:mm')}}</p>
                 </div>
             </div>
         </div>

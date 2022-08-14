@@ -105,7 +105,7 @@
                             <div
                             class="spec fs16 mar-right-20 cur-poi"
                             :class="indexs==item.activeIndex?'active':''"
-                            v-for="(items, indexs) in item.attrValue"
+                            v-for="(items, indexs) in item.attr_value"
                             :key="indexs" @click="selectAttr(item,index,indexs)">
                             {{items.attr}}
                             </div>
@@ -242,9 +242,9 @@ export default {
     components: { Recommend, ProductEvaluate, NotFoundInfo },
     data () {
         return {
-            productData: {},
+            product_data: {},
             product_attr: [],
-            productValue: {},
+            product_value: {},
             store_info: [],
             currentProduct: {},
             currentAttr: [],
@@ -453,10 +453,10 @@ export default {
         // 选中规格
         selectAttr (item, index, indexs) {
             item.activeIndex = indexs
-            item.activeAttr = item.attrValue[indexs].attr
-            this.currentAttr[index] = item.attrValue[indexs].attr
-            if (this.productValue[this.currentAttr] !== undefined) {
-                this.currentProduct = this.productValue[this.currentAttr]
+            item.activeAttr = item.attr_value[indexs].attr
+            this.currentAttr[index] = item.attr_value[indexs].attr
+            if (this.product_value[this.currentAttr] !== undefined) {
+                this.currentProduct = this.product_value[this.currentAttr]
                 this.bigImg = this.currentProduct.image
                 console.log(this.currentProduct)
             }
@@ -473,16 +473,16 @@ export default {
             this.addLoading = true
             let params = {
                     product_id: this.store_info.id,
-                    cartNum: this.num,
-                    uniqueId: this.currentProduct.unique
+                    cart_num: this.num,
+                    unique_id: this.currentProduct.unique
                 }
             // 秒杀商品处理
             if (this.$route.query.type === '1') {
                 params = {
                     product_id: this.currentProduct.product_id,
                     seckill_id: this.store_info.id,
-                    cartNum: this.num,
-                    uniqueId: this.currentProduct.unique
+                    cart_num: this.num,
+                  unique_id: this.currentProduct.unique
                 }
             }
             cartAdd(params).then(res => {
@@ -504,19 +504,20 @@ export default {
             let params = {
               Is_new: 1,
                 product_id: this.store_info.id,
-                cartNum: this.num,
-                uniqueId: this.currentProduct.unique
+                cart_num: this.num,
+              unique_id: this.currentProduct.unique
             }
             // 秒杀商品处理
             if (this.$route.query.type === '1') {
                 params = {
                     product_id: this.currentProduct.product_id,
                     seckill_id: this.store_info.id,
-                    cartNum: this.num,
-                    uniqueId: this.currentProduct.unique
+                    cart_num: this.num,
+                  unique_id: this.currentProduct.unique
                 }
             }
             cartAdd(params).then(res => {
+              console.log("cartAdd res ",res)
                 if (res.status === 200) {
                     // 添加到购物车，拿到购物id 跳转到结算页面并传递id
                     this.$router.push({
@@ -534,7 +535,7 @@ export default {
         // 单独购买
         buyAlone () {
             // 跳转到商品详情（普通商品）
-            // console.log(this.$route.query.normalId)
+            console.log("normalId",this.$route.query.normalId)
             this.$router.push({
                 path: '/productDetail',
                 query: {
@@ -558,9 +559,10 @@ export default {
             cartAdd({
                 product_id: this.currentProduct.product_id,
                 combination_id: this.store_info.id,
-                cartNum: this.num,
-                uniqueId: this.currentProduct.unique
+                cart_num: this.num,
+              unique_id: this.currentProduct.unique
             }).then(res => {
+              console.log("res.data",res.data)
                 if (res.status === 200) {
                     // 添加到购物车，拿到购物id 跳转到结算页面并传递id
                     this.$router.push({

@@ -208,7 +208,7 @@ export default {
                     this.orderdata[0].status = 12 // 拼团失败状态码
                 }
             }
-            if (this.orderdata[0].cart_info[0].isReply !== 0) {
+            if (this.orderdata[0].cart_info[0].is_reply !== 0) {
                 this.orderdata[0].status = 4
             }
             this.selectBtn(this.orderdata[0].status)
@@ -239,17 +239,17 @@ export default {
                 'cart_info': res.data.cart_info.map(i => {
                     return {
                     'cart_id': i.id,
-                    'productInfoId': i.productInfo.id,
-                    'attrid': i.productInfo.attrInfo.id,
+                    'product_info_id': i.product_info.id,
+                    'attrid': i.product_info.attr_info.id,
                     'combination_id': i.combination_id,
                     'product_id': i.product_id,
-                    'attrproduct_id': i.productInfo.attrInfo.product_id,
-                    'cartNum': i.cartNum,
-                    'isReply': i.isReply, // 是否评价
-                    'truePrice': i.truePrice,
-                    'store_name': i.productInfo.store_name,
-                    'img': i.productInfo.attrInfo.image,
-                    'sku': i.productInfo.attrInfo.sku
+                    'attr_product_id': i.product_info.attr_info.product_id,
+                    'cart_num': i.cart_num,
+                    'is_reply': i.is_reply, // 是否评价
+                    'true_price': i.true_price,
+                    'store_name': i.product_info.store_name,
+                    'img': i.product_info.attr_info.image,
+                    'sku': i.product_info.attr_info.sku
                     }
                 }),
                 'address': {
@@ -333,7 +333,7 @@ export default {
                     //     this.$message.error('所有商品均已评论过')
                     //     return
                     // }
-                    if (this.orderdata[0].cart_info[0].isReply !== 0) {
+                    if (this.orderdata[0].cart_info[0].is_reply !== 0) {
                         this.$message.error('该订单已评价过')
                         return
                     }

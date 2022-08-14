@@ -42,12 +42,12 @@ export default {
         addToCart (id) {
             cartAdd({
                 'bargain_id': 0,
-                'cartNum': 1,
+                'cart_num': 1,
                 'combination_id': 0,
                 'new': 0,
                 'product_id': id,
                 'seckill_id': 0,
-                'uniqueId': ''
+                'unique_id': ''
             }).then(res => {
                 if (res.status === 200) {
                     this.$message.success('成功添加到购物车')
