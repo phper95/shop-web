@@ -231,6 +231,7 @@ export default {
                 'id': res.data.id,
                 'create_time': res.data.create_time,
                 'order_id': res.data.order_id,
+                'display_order_id': res.data.display_order_id,
                 'paid': res.data.paid,
                 'pay_time': res.data.pay_time,
                 'pay_price': res.data.pay_price,
